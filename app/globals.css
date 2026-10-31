@@ -1,21 +1,89 @@
 @import "tailwindcss";
 
-@import url("https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800;900&display=swap");
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: 'Cairo', 'Alexandria', 'Almarai', 'Tajawal', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-cairo: 'Cairo', sans-serif;
+  --font-alexandria: 'Alexandria', sans-serif;
+  --font-almarai: 'Almarai', sans-serif;
+  --font-tajawal: 'Tajawal', sans-serif;
+  --color-brand-blue: #2563EB;
+  --color-brand-blueDark: #1d4ed8;
+  --color-brand-red: #DC2626;
+  --color-brand-redDark: #b91c1c;
+  --color-brand-ink: #0B1220;
+}
 
 :root {
-  --font-alexandria: 'Alexandria', sans-serif;
+  --font-arabic: 'Cairo', 'Alexandria', 'Almarai', 'Tajawal', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-inter: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --brand-blue: #2563EB;
+  --brand-blue-dark: #1d4ed8;
+  --brand-red: #DC2626;
+  --brand-red-dark: #b91c1c;
+  --brand-ink: #0B1220;
 }
 
-html {
-  scroll-behavior: smooth;
-  font-family: 'Alexandria', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+html, body {
+  font-family: var(--font-arabic);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  font-family: 'Alexandria', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+[dir="rtl"], [dir="rtl"] body {
+  font-family: var(--font-arabic);
 }
 
-/* Custom transitions and scrollbar */
+[dir="ltr"], [dir="ltr"] body {
+  font-family: var(--font-inter);
+}
+
+/* Dynamic Font Classes */
+.font-cairo, .font-cairo * {
+  font-family: 'Cairo', system-ui, sans-serif !important;
+}
+
+.font-alexandria, .font-alexandria * {
+  font-family: 'Alexandria', system-ui, sans-serif !important;
+}
+
+.font-almarai, .font-almarai * {
+  font-family: 'Almarai', system-ui, sans-serif !important;
+}
+
+.font-tajawal, .font-tajawal * {
+  font-family: 'Tajawal', system-ui, sans-serif !important;
+}
+
+/* Original alsheed.com styling */
+.hero-grid {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.dark .glass {
+  background: rgba(11, 18, 32, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.shadow-lift {
+  box-shadow: 0 24px 48px -20px rgba(37, 99, 235, 0.35);
+}
+
+.shadow-soft {
+  box-shadow: 0 10px 30px -12px rgba(15, 23, 42, 0.18);
+}
+
+/* Custom scrollbars */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -26,12 +94,12 @@ body {
 }
 
 .dark ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: #0B1220;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 4px;
+  background: #94a3b8;
+  border-radius: 8px;
 }
 
 .dark ::-webkit-scrollbar-thumb {
@@ -39,5 +107,5 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #64748b;
 }

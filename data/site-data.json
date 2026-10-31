@@ -1,0 +1,468 @@
+{
+  "updatedAt": 1793467607951,
+  "settings": {
+    "siteTitle": "شركة الشيد للاستثمار والتطوير العقاري - شقق سكنية للإيجار",
+    "companyName": "شركة الشيد",
+    "companySubtitle": "للاستثمار والتطوير العقاري",
+    "topbarText": "أرقى الشقق السكنية للإيجار المباشر في بغداد",
+    "phone": "07725437001",
+    "phoneDisplay": "0772 543 7001",
+    "whatsapp": "9647725437001",
+    "whatsappDisplay": "0772 543 7001",
+    "adminPasswordHash": "3cd2fa2420b61befcaab495fbf56865d4a0b10729f56318ec5d76f12aa5d7ad4"
+  },
+  "hero": {
+    "badgeText": "شقة متاحة للإيجار الآن",
+    "titleLine1": "بيتك القادم في",
+    "titleHighlight": "بنايات الشيد",
+    "subtitle": "شقق سكنية راقية للإيجار المباشر من المالك في العرصات وشارع السدة وأبو نؤاس — بدون وسطاء وبعقود واضحة.",
+    "stat3Value": "100%",
+    "stat3Label": "إيجار مباشر من المالك"
+  },
+  "buildings": {
+    "بناية الشيد 20": "العرصات",
+    "بناية الشيد 30": "العرصات",
+    "بناية الشيد 15": "العرصات",
+    "بناية الشيد 32": "شارع السدة",
+    "بناية الشيد 28": "أبو نؤاس",
+    "العرصات": "العرصات"
+  },
+  "whyUs": {
+    "sectionTitle": "لماذا تستأجر من الشيد؟",
+    "sectionTitleEn": "Why Rent from Al-Sheed?",
+    "items": [
+      {
+        "icon": "handshake",
+        "title": "من المالك مباشرة",
+        "titleEn": "Direct From Owner",
+        "desc": "بدون عمولة وسطاء، تعامل مباشر مع الشركة المالكة.",
+        "descEn": "Zero broker commission, deal directly with the building owner company."
+      },
+      {
+        "icon": "shield-check",
+        "title": "أمان على مدار الساعة",
+        "titleEn": "24/7 Safety & Security",
+        "desc": "حراسة وكاميرات مراقبة ومداخل مؤمنة في كل بناية.",
+        "descEn": "Dedicated security guards, CCTV surveillance, and secure building entrances."
+      },
+      {
+        "icon": "zap",
+        "title": "كهرباء وخدمات مستمرة",
+        "titleEn": "24/7 Continuous Power",
+        "desc": "مولدات خاصة ومصاعد وصيانة دورية للبناية.",
+        "descEn": "Industrial-grade private generators, modern elevators, and routine maintenance."
+      },
+      {
+        "icon": "file-check-2",
+        "title": "عقود مرنة وواضحة",
+        "titleEn": "Flexible & Clear Contracts",
+        "desc": "مدد إيجار متعددة تناسب العائلات والموظفين.",
+        "descEn": "Multiple lease terms tailored for families, diplomats, and corporate executives."
+      }
+    ]
+  },
+  "cta": {
+    "title": "احجز موعد معاينة اليوم",
+    "titleEn": "Book a Viewing Appointment Today",
+    "desc": "اتصل بمكتب الإيجارات لمعرفة الأسعار والتوفر وتحديد موعد زيارة.",
+    "descEn": "Contact our leasing office to check availability and schedule an on-site visit.",
+    "phoneDisplay": "0772 543 7001",
+    "phone": "07725437001",
+    "whatsappBtnText": "مراسلة واتساب",
+    "whatsappBtnTextEn": "Chat on WhatsApp",
+    "callBtnText": "اتصال هاتفي",
+    "callBtnTextEn": "Direct Phone Call",
+    "whatsappMessage": "مرحباً شركة الشيد، أريد حجز موعد معاينة",
+    "whatsappMessageEn": "Hello Al-Sheed, I would like to schedule a viewing appointment"
+  },
+  "footer": {
+    "about": "أفخم الشقق السكنية للإيجار المباشر في أرقى مناطق بغداد.",
+    "aboutEn": "Al-Sheed Real Estate Investment & Development is a premier provider of luxury residential buildings for direct lease from owner in Baghdad's most sought-after neighborhoods.",
+    "locationsTitle": "مواقعنا السكنية",
+    "locationsTitleEn": "Our Residential Locations",
+    "officeTitle": "مكتب الإيجارات",
+    "officeTitleEn": "Leasing Desk",
+    "officeDesc": "للاستفسار عن الأسعار وتوفر الشقق ومواعيد المعاينة.",
+    "officeDescEn": "For inquiries regarding rates, unit availability, and scheduling on-site viewings.",
+    "copyright": "© 2026 شركة الشيد للاستثمار والتطوير العقاري. جميع الحقوق محفوظة.",
+    "copyrightEn": "© 2026 Al-Sheed Real Estate Investment & Development. All rights reserved.",
+    "department": "قسم الإيجارات السكنية المباشرة",
+    "departmentEn": "Direct Residential Leasing Department"
+  },
+  "properties": [
+    {
+      "id": 1793467569419,
+      "title": "شقة سكنية جديدة",
+      "building": "العرصات",
+      "location": "العرصات",
+      "beds": 3,
+      "baths": 2,
+      "area": 150,
+      "furnishing": "فارغ",
+      "floor": "طابق عالي",
+      "view": "إطلالة على المدينة",
+      "available": true,
+      "featured": true,
+      "features": [
+        "مولدة 24 ساعة",
+        "مصعد",
+        "حراسة وكاميرات"
+      ],
+      "images": [
+        "data:image/jpeg;base64,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"
+      ],
+      "buildingEn": "Al-Arasat",
+      "locationEn": "Al-Arasat",
+      "titleEn": "Brand New Residential Apartment",
+      "furnishingEn": "Unfurnished",
+      "floorEn": "High Floor",
+      "viewEn": "City View",
+      "featuresEn": [
+        "24/7 Generator",
+        "Modern Elevator",
+        "24/7 Security & CCTV"
+      ]
+    },
+    {
+      "id": 1,
+      "title": "بنتهاوس بإطلالة نهرية خلابة",
+      "building": "بناية الشيد 28",
+      "location": "أبو نؤاس",
+      "beds": 4,
+      "baths": 2,
+      "area": 240,
+      "furnishing": "مؤثث بالكامل",
+      "floor": "طابق عالي",
+      "view": "إطلالة نهرية",
+      "available": true,
+      "featured": true,
+      "features": [
+        "مولدة 24 ساعة",
+        "مصعد",
+        "موقف سيارات",
+        "حراسة وكاميرات",
+        "تكييف مركزي",
+        "شرفة واسعة"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1000&q=75&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1000&q=75&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1000&q=75&auto=format&fit=crop"
+      ],
+      "titleEn": "Luxury Penthouse with Stunning River View",
+      "buildingEn": "Al-Sheed Building 28",
+      "locationEn": "Abu Nuwas",
+      "furnishingEn": "Fully Furnished",
+      "floorEn": "High Floor",
+      "viewEn": "Tigris River View",
+      "featuresEn": [
+        "24/7 Generator",
+        "Modern Elevator",
+        "Dedicated Parking",
+        "24/7 Security & CCTV",
+        "Central Air Conditioning",
+        "Spacious Balcony"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "شقة عائلية واسعة وسط المدينة",
+      "building": "بناية الشيد 30",
+      "location": "العرصات",
+      "beds": 3,
+      "baths": 2,
+      "area": 180,
+      "furnishing": "فارغ",
+      "floor": "طابق منخفض",
+      "view": "إطلالة على المدينة",
+      "available": true,
+      "featured": false,
+      "features": [
+        "مولدة 24 ساعة",
+        "مصعد",
+        "موقف سيارات",
+        "حراسة وكاميرات"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1000&q=75&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1000&q=75&auto=format&fit=crop"
+      ],
+      "titleEn": "Spacious Family Apartment in City Center",
+      "buildingEn": "Al-Sheed Building 30",
+      "locationEn": "Al-Arasat",
+      "furnishingEn": "Unfurnished",
+      "floorEn": "Low Floor",
+      "viewEn": "City View",
+      "featuresEn": [
+        "24/7 Generator",
+        "Modern Elevator",
+        "Dedicated Parking",
+        "24/7 Security & CCTV"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "شقة مودرن بلمسات فاخرة",
+      "building": "بناية الشيد 32",
+      "location": "شارع السدة",
+      "beds": 2,
+      "baths": 2,
+      "area": 135,
+      "furnishing": "كاونتر مطبخ فقط",
+      "floor": "فرعية",
+      "view": "إطلالة نهرية",
+      "available": true,
+      "featured": true,
+      "features": [
+        "مولدة 24 ساعة",
+        "مصعد",
+        "حراسة وكاميرات",
+        "إنترنت فايبر"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1000&q=75&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=1000&q=75&auto=format&fit=crop"
+      ],
+      "titleEn": "Modern Apartment with Luxury Touches",
+      "buildingEn": "Al-Sheed Building 32",
+      "locationEn": "Al-Sedda Street",
+      "furnishingEn": "Kitchen Cabinets Only",
+      "floorEn": "Side Floor",
+      "viewEn": "Tigris River View",
+      "featuresEn": [
+        "24/7 Generator",
+        "Modern Elevator",
+        "24/7 Security & CCTV",
+        "Fiber Internet"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "شقة فندقية للتأجير الراقي",
+      "building": "بناية الشيد 20",
+      "location": "العرصات",
+      "beds": 2,
+      "baths": 2,
+      "area": 125,
+      "furnishing": "مؤثث بالكامل",
+      "floor": "طابق عالي",
+      "view": "إطلالة على المدينة",
+      "available": false,
+      "featured": false,
+      "features": [
+        "مولدة 24 ساعة",
+        "مصعد",
+        "خدمة تنظيف",
+        "إنترنت فايبر",
+        "تكييف مركزي"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=1000&q=75&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1000&q=75&auto=format&fit=crop"
+      ],
+      "titleEn": "Hotel-Style High-End Apartment",
+      "buildingEn": "Al-Sheed Building 20",
+      "locationEn": "Al-Arasat",
+      "furnishingEn": "Fully Furnished",
+      "floorEn": "High Floor",
+      "viewEn": "City View",
+      "featuresEn": [
+        "24/7 Generator",
+        "Modern Elevator",
+        "Cleaning Service",
+        "Fiber Internet",
+        "Central Air Conditioning"
+      ]
+    },
+    {
+      "id": 5,
+      "title": "شقة سكنية هادئة جاهزة للإشغال",
+      "building": "بناية الشيد 15",
+      "location": "العرصات",
+      "beds": 3,
+      "baths": 2,
+      "area": 165,
+      "furnishing": "كاونتر مطبخ فقط",
+      "floor": "طابق منخفض",
+      "view": "إطلالة على المدينة",
+      "available": true,
+      "featured": false,
+      "features": [
+        "مولدة 24 ساعة",
+        "موقف سيارات",
+        "حراسة وكاميرات"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1000&q=75&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=1000&q=75&auto=format&fit=crop"
+      ],
+      "titleEn": "Quiet Residential Apartment Ready for Occupancy",
+      "buildingEn": "Al-Sheed Building 15",
+      "locationEn": "Al-Arasat",
+      "furnishingEn": "Kitchen Cabinets Only",
+      "floorEn": "Low Floor",
+      "viewEn": "City View",
+      "featuresEn": [
+        "24/7 Generator",
+        "Dedicated Parking",
+        "24/7 Security & CCTV"
+      ]
+    },
+    {
+      "id": 6,
+      "title": "بنتهاوس فخم بمساحة مفتوحة",
+      "building": "بناية الشيد 32",
+      "location": "شارع السدة",
+      "beds": 4,
+      "baths": 2,
+      "area": 260,
+      "furnishing": "فارغ",
+      "floor": "طابق عالي",
+      "view": "إطلالة نهرية",
+      "available": true,
+      "featured": true,
+      "features": [
+        "مولدة 24 ساعة",
+        "مصعد",
+        "موقف سيارات",
+        "شرفة واسعة",
+        "حراسة وكاميرات"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1000&q=75&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1000&q=75&auto=format&fit=crop"
+      ],
+      "titleEn": "Luxury Penthouse with Open Concept Layout",
+      "buildingEn": "Al-Sheed Building 32",
+      "locationEn": "Al-Sedda Street",
+      "furnishingEn": "Unfurnished",
+      "floorEn": "High Floor",
+      "viewEn": "Tigris River View",
+      "featuresEn": [
+        "24/7 Generator",
+        "Modern Elevator",
+        "Dedicated Parking",
+        "Spacious Balcony",
+        "24/7 Security & CCTV"
+      ]
+    },
+    {
+      "id": 7,
+      "title": "شقة أنيقة لعائلة صغيرة",
+      "building": "بناية الشيد 20",
+      "location": "العرصات",
+      "beds": 2,
+      "baths": 2,
+      "area": 120,
+      "furnishing": "كاونتر مطبخ فقط",
+      "floor": "طابق منخفض",
+      "view": "إطلالة على المدينة",
+      "available": true,
+      "featured": false,
+      "features": [
+        "مولدة 24 ساعة",
+        "مصعد",
+        "حراسة وكاميرات"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=1000&q=75&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1000&q=75&auto=format&fit=crop"
+      ],
+      "titleEn": "Elegant Apartment for Small Families",
+      "buildingEn": "Al-Sheed Building 20",
+      "locationEn": "Al-Arasat",
+      "furnishingEn": "Kitchen Cabinets Only",
+      "floorEn": "Low Floor",
+      "viewEn": "City View",
+      "featuresEn": [
+        "24/7 Generator",
+        "Modern Elevator",
+        "24/7 Security & CCTV"
+      ]
+    },
+    {
+      "id": 8,
+      "title": "شقة مطلة على دجلة",
+      "building": "بناية الشيد 28",
+      "location": "أبو نؤاس",
+      "beds": 3,
+      "baths": 2,
+      "area": 195,
+      "furnishing": "مؤثث بالكامل",
+      "floor": "طابق عالي",
+      "view": "إطلالة نهرية",
+      "available": false,
+      "featured": false,
+      "features": [
+        "مولدة 24 ساعة",
+        "مصعد",
+        "موقف سيارات",
+        "تكييف مركزي",
+        "شرفة واسعة"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1000&q=75&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=1000&q=75&auto=format&fit=crop"
+      ],
+      "titleEn": "Prime Apartment Overlooking the Tigris",
+      "buildingEn": "Al-Sheed Building 28",
+      "locationEn": "Abu Nuwas",
+      "furnishingEn": "Fully Furnished",
+      "floorEn": "High Floor",
+      "viewEn": "Tigris River View",
+      "featuresEn": [
+        "24/7 Generator",
+        "Modern Elevator",
+        "Dedicated Parking",
+        "Central Air Conditioning",
+        "Spacious Balcony"
+      ]
+    },
+    {
+      "id": 9,
+      "title": "شقة رحبة بتصميم عصري",
+      "building": "بناية الشيد 30",
+      "location": "العرصات",
+      "beds": 4,
+      "baths": 2,
+      "area": 220,
+      "furnishing": "كاونتر مطبخ فقط",
+      "floor": "طابق عالي",
+      "view": "إطلالة على المدينة",
+      "available": true,
+      "featured": false,
+      "features": [
+        "مولدة 24 ساعة",
+        "مصعد",
+        "موقف سيارات",
+        "حراسة وكاميرات",
+        "إنترنت فايبر"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=1000&q=75&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?w=1000&q=75&auto=format&fit=crop"
+      ],
+      "titleEn": "Spacious Apartment with Contemporary Design",
+      "buildingEn": "Al-Sheed Building 30",
+      "locationEn": "Al-Arasat",
+      "furnishingEn": "Kitchen Cabinets Only",
+      "floorEn": "High Floor",
+      "viewEn": "City View",
+      "featuresEn": [
+        "24/7 Generator",
+        "Modern Elevator",
+        "Dedicated Parking",
+        "24/7 Security & CCTV",
+        "Fiber Internet"
+      ]
+    }
+  ],
+  "buildingsEn": {
+    "العرصات": "Al-Arasat",
+    "بناية الشيد 15": "Al-Sheed Building 15",
+    "بناية الشيد 20": "Al-Sheed Building 20",
+    "بناية الشيد 28": "Al-Sheed Building 28",
+    "بناية الشيد 30": "Al-Sheed Building 30",
+    "بناية الشيد 32": "Al-Sheed Building 32"
+  }
+}
