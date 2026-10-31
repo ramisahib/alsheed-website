@@ -1,5 +1,5 @@
 {
-  "totalPageviews": 54,
+  "totalPageviews": 68,
   "uniqueVisitors": 2,
   "totalCalls": 1,
   "totalWhatsApp": 1,
@@ -13,6 +13,76 @@
     }
   },
   "recentEvents": [
+    {
+      "id": "1793472471518-xy8p9",
+      "type": "pageview",
+      "timestamp": 1793472471518
+    },
+    {
+      "id": "1793472464096-z6e2y",
+      "type": "pageview",
+      "timestamp": 1793472464096
+    },
+    {
+      "id": "1793472464080-otbal",
+      "type": "pageview",
+      "timestamp": 1793472464080
+    },
+    {
+      "id": "1793472463088-hacwr",
+      "type": "pageview",
+      "timestamp": 1793472463088
+    },
+    {
+      "id": "1793472462566-ijxhz",
+      "type": "pageview",
+      "timestamp": 1793472462566
+    },
+    {
+      "id": "1793472462049-vfeju",
+      "type": "pageview",
+      "timestamp": 1793472462049
+    },
+    {
+      "id": "1793472460033-uywx4",
+      "type": "pageview",
+      "timestamp": 1793472460033
+    },
+    {
+      "id": "1793471981847-ehxlu",
+      "type": "pageview",
+      "timestamp": 1793471981847
+    },
+    {
+      "id": "1793471981774-tr9dx",
+      "type": "pageview",
+      "timestamp": 1793471981774
+    },
+    {
+      "id": "1793471981694-unm5d",
+      "type": "pageview",
+      "timestamp": 1793471981694
+    },
+    {
+      "id": "1793471627043-sce8o",
+      "type": "pageview",
+      "timestamp": 1793471627043
+    },
+    {
+      "id": "1793471627027-z036q",
+      "type": "pageview",
+      "timestamp": 1793471627027
+    },
+    {
+      "id": "1793471542302-igr2d",
+      "type": "pageview",
+      "timestamp": 1793471542302
+    },
+    {
+      "id": "1793471542287-alkdx",
+      "type": "pageview",
+      "timestamp": 1793471542287
+    },
     {
       "id": "1793468863539-ozs0f",
       "type": "pageview",
@@ -302,10 +372,10 @@
       "timestamp": 1793466348721
     }
   ],
-  "updatedAt": 1793468863539,
+  "updatedAt": 1793472471518,
   "daily": {
     "2026-10-31": {
-      "views": 2,
+      "views": 16,
       "calls": 0,
       "whatsapp": 0
     }

@@ -47,6 +47,7 @@ import {
   Car,
   Snowflake,
   Wifi,
+  Menu,
 } from "lucide-react";
 import { SiteData, Property } from "@/lib/types";
 import {
@@ -75,6 +76,7 @@ export default function HomeClient({ initialData }: HomeClientProps) {
   const [openFaqIdx, setOpenFaqIdx] = useState<number | null>(0);
   const [copySuccess, setCopySuccess] = useState<boolean>(false);
   const [showMobileFilters, setShowMobileFilters] = useState<boolean>(false);
+  const [showMobileNav, setShowMobileNav] = useState<boolean>(false);
   const [layoutMode, setLayoutMode] = useState<"grid" | "list">("grid");
 
   // Filters state matching alsheed.com
@@ -400,53 +402,57 @@ export default function HomeClient({ initialData }: HomeClientProps) {
 
   return (
     <div className={`min-h-screen flex flex-col ${currentFontClass} transition-colors duration-200`}>
-      {/* 1. Top bar — exact alsheed.com styling */}
-      <div className="bg-[#0B1220] text-slate-300 text-xs py-2 px-4 dark:bg-black/50 border-b border-white/5">
-        <div className="max-w-7xl mx-auto flex justify-between items-center gap-3">
-          <span className="hidden sm:flex items-center gap-1.5 font-medium">
+      {/* 1. Top bar — exact alsheed.com styling with responsive layout */}
+      <div className="bg-[#0B1220] text-slate-300 text-xs py-2 px-3 sm:px-4 dark:bg-black/50 border-b border-white/5">
+        <div className="max-w-7xl mx-auto flex justify-between items-center gap-2 sm:gap-3">
+          <span className="hidden md:flex items-center gap-1.5 font-medium truncate">
             <Building2 className="text-[#2563EB]" size={15} />
             <span>{lang === "en" ? "Luxury Residential Apartments for Direct Rent in Baghdad" : "أرقى الشقق السكنية للإيجار المباشر في بغداد"}</span>
           </span>
 
-          <div className="flex items-center gap-4 font-semibold ms-auto" dir="ltr">
-            <a
-              href={`https://wa.me/${data.settings.whatsapp}`}
-              onClick={() => trackEvent("whatsapp", undefined, "topbar_whatsapp")}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-green-400 flex items-center gap-1.5 transition-colors"
-            >
-              <WhatsAppIcon size={14} className="text-green-500" />
-              <span>{data.settings.phoneDisplay}</span>
-            </a>
-            <a
-              href={`tel:${data.settings.phone}`}
-              onClick={() => trackEvent("call", undefined, "topbar_call")}
-              className="hover:text-white flex items-center gap-1.5 transition-colors"
-            >
-              <Phone size={13} className="text-[#2563EB]" />
-              <span>{data.settings.phoneDisplay}</span>
-            </a>
+          <div className="flex items-center justify-between md:justify-end w-full md:w-auto gap-3 font-semibold ms-auto" dir="ltr">
+            <div className="flex items-center gap-3">
+              <a
+                href={`https://wa.me/${data.settings.whatsapp}`}
+                onClick={() => trackEvent("whatsapp", undefined, "topbar_whatsapp")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-green-400 flex items-center gap-1.5 transition-colors text-[11px] sm:text-xs"
+              >
+                <WhatsAppIcon size={14} className="text-green-500" />
+                <span className="hidden xs:inline">{data.settings.phoneDisplay}</span>
+                <span className="xs:hidden">واتساب</span>
+              </a>
+              <a
+                href={`tel:${data.settings.phone}`}
+                onClick={() => trackEvent("call", undefined, "topbar_call")}
+                className="hover:text-white flex items-center gap-1.5 transition-colors text-[11px] sm:text-xs"
+              >
+                <Phone size={13} className="text-[#2563EB]" />
+                <span>{data.settings.phoneDisplay}</span>
+              </a>
+            </div>
 
-            <span className="text-slate-700">|</span>
-
-            {/* Language Switcher in Top Bar */}
-            <button
-              onClick={toggleLanguage}
-              className="flex items-center gap-1 text-[11px] text-amber-400 hover:text-white font-bold transition-colors cursor-pointer"
-            >
-              <Globe size={13} />
-              <span>{t.langSwitch}</span>
-            </button>
+            <div className="flex items-center gap-2">
+              <span className="text-slate-700">|</span>
+              {/* Language Switcher in Top Bar */}
+              <button
+                onClick={toggleLanguage}
+                className="flex items-center gap-1 text-[11px] text-amber-400 hover:text-white font-bold transition-colors cursor-pointer"
+              >
+                <Globe size={13} />
+                <span>{t.langSwitch}</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
 
       {/* 2. Header — exact glass effect & Al-Sheed SVG Logo */}
       <header className="sticky top-0 z-40 glass border-b border-slate-200/70 dark:border-white/5 transition-colors">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[72px] flex items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-[72px] flex items-center justify-between gap-2 sm:gap-4">
           {/* Exact Al-Sheed Logo */}
-          <Link href="#top" className="flex items-center gap-3 shrink-0">
+          <Link href="#top" className="flex items-center gap-2 sm:gap-3 shrink-0">
             <AlSheedLogo
               title={data.settings.companyName}
               subtitle={data.settings.companySubtitle}
@@ -454,7 +460,7 @@ export default function HomeClient({ initialData }: HomeClientProps) {
             />
           </Link>
 
-          {/* Nav links */}
+          {/* Desktop Nav links */}
           <nav className="hidden lg:flex items-center gap-1 text-sm font-semibold text-slate-600 dark:text-slate-300">
             <a href="#listings" className="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-white/5 transition-colors">
               {t.navProperties}
@@ -473,27 +479,27 @@ export default function HomeClient({ initialData }: HomeClientProps) {
             </a>
           </nav>
 
-          {/* Action buttons matching alsheed.com */}
-          <div className="flex items-center gap-2">
-            {/* Language switch */}
+          {/* Action buttons */}
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            {/* Language switch button */}
             <button
               onClick={toggleLanguage}
-              className="px-2.5 py-1.5 rounded-xl border border-slate-200 dark:border-white/10 hover:border-[#2563EB] text-xs font-bold text-slate-700 dark:text-slate-200 flex items-center gap-1.5 transition-colors"
+              className="px-2 sm:px-2.5 py-1.5 rounded-xl border border-slate-200 dark:border-white/10 hover:border-[#2563EB] text-xs font-bold text-slate-700 dark:text-slate-200 flex items-center gap-1 sm:gap-1.5 transition-colors"
               title="Toggle Language"
             >
               <Globe size={14} className="text-[#2563EB]" />
-              <span>{t.langSwitch}</span>
+              <span className="hidden xs:inline">{t.langSwitch}</span>
             </button>
 
             {/* Favorites heart button with red counter */}
             <button
               onClick={() => setShowFavorites(true)}
-              className="relative w-10 h-10 rounded-xl bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 flex items-center justify-center text-slate-700 dark:text-slate-200 transition-colors"
+              className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 flex items-center justify-center text-slate-700 dark:text-slate-200 transition-colors"
               aria-label={lang === "en" ? "Favorites" : "المفضلة"}
             >
-              <Heart size={18} className={favorites.length > 0 ? "fill-[#DC2626] text-[#DC2626]" : ""} />
+              <Heart size={17} className={favorites.length > 0 ? "fill-[#DC2626] text-[#DC2626]" : ""} />
               {favorites.length > 0 && (
-                <span className="absolute -top-1 -end-1 min-w-[20px] h-5 px-1 rounded-full bg-[#DC2626] text-white text-[10px] font-bold flex items-center justify-center shadow-xs">
+                <span className="absolute -top-1 -end-1 min-w-[18px] h-[18px] px-1 rounded-full bg-[#DC2626] text-white text-[9px] font-bold flex items-center justify-center shadow-xs">
                   {favorites.length}
                 </span>
               )}
@@ -502,24 +508,186 @@ export default function HomeClient({ initialData }: HomeClientProps) {
             {/* Dark mode button */}
             <button
               onClick={toggleDarkMode}
-              className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 flex items-center justify-center text-slate-700 dark:text-slate-200 transition-colors"
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 flex items-center justify-center text-slate-700 dark:text-slate-200 transition-colors"
               aria-label="Toggle theme"
             >
-              {isDark ? <Sun size={17} /> : <Moon size={17} />}
+              {isDark ? <Sun size={16} /> : <Moon size={16} />}
             </button>
 
-            {/* Red Call to book button */}
+            {/* Red Call to book button (Desktop) */}
             <a
               href={`tel:${data.settings.phone}`}
               onClick={() => trackEvent("call", undefined, "header_call_button")}
-              className="hidden sm:flex bg-[#DC2626] hover:bg-[#b91c1c] text-white px-4 py-2.5 rounded-xl text-sm font-bold items-center gap-2 shadow-lg shadow-[#DC2626]/25 transition-all"
+              className="hidden sm:flex bg-[#DC2626] hover:bg-[#b91c1c] text-white px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-bold items-center gap-2 shadow-lg shadow-[#DC2626]/25 transition-all"
             >
-              <Phone size={15} />
+              <Phone size={14} />
               <span>{lang === "ar" ? "اتصل للحجز" : "Call to Book"}</span>
             </a>
+
+            {/* Mobile Hamburger Menu Toggle Button */}
+            <button
+              onClick={() => setShowMobileNav(true)}
+              className="lg:hidden w-9 h-9 rounded-xl bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 flex items-center justify-center text-slate-700 dark:text-slate-200 transition-colors"
+              aria-label="Open navigation menu"
+            >
+              <Menu size={18} />
+            </button>
           </div>
         </div>
       </header>
+
+      {/* Mobile Slide-Out Navigation Drawer */}
+      {showMobileNav && (
+        <div className="fixed inset-0 z-50 lg:hidden">
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 bg-slate-950/70 backdrop-blur-xs transition-opacity"
+            onClick={() => setShowMobileNav(false)}
+          />
+
+          {/* Drawer Sheet */}
+          <div className="fixed inset-y-0 start-0 w-[84%] max-w-xs bg-white dark:bg-[#0B1220] shadow-2xl flex flex-col z-50 border-e border-slate-200 dark:border-white/10">
+            {/* Header */}
+            <div className="p-4 border-b border-slate-200 dark:border-white/10 flex items-center justify-between">
+              <AlSheedLogo
+                title={data.settings.companyName}
+                subtitle={data.settings.companySubtitle}
+                isEnglish={lang === "en"}
+              />
+              <button
+                onClick={() => setShowMobileNav(false)}
+                className="w-9 h-9 rounded-xl bg-slate-100 dark:bg-white/5 flex items-center justify-center text-slate-500 hover:text-slate-900 dark:hover:text-white"
+                aria-label="Close menu"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            {/* Quick Call & WhatsApp Action Buttons */}
+            <div className="p-4 space-y-2.5 border-b border-slate-200 dark:border-white/10 bg-slate-50/60 dark:bg-white/2">
+              <a
+                href={`tel:${data.settings.phone}`}
+                onClick={() => {
+                  trackEvent("call", undefined, "mobile_drawer_call");
+                  setShowMobileNav(false);
+                }}
+                className="w-full bg-[#DC2626] hover:bg-[#b91c1c] text-white py-3 px-4 rounded-xl text-xs font-bold flex items-center justify-center gap-2 shadow-md shadow-[#DC2626]/20 transition"
+              >
+                <Phone size={15} />
+                <span>{lang === "ar" ? "اتصل للحجز والاستفسار" : "Call for Inquiries"}</span>
+              </a>
+              <a
+                href={whatsappUrl()}
+                onClick={() => {
+                  trackEvent("whatsapp", undefined, "mobile_drawer_whatsapp");
+                  setShowMobileNav(false);
+                }}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full bg-green-500 hover:bg-green-600 text-white py-3 px-4 rounded-xl text-xs font-bold flex items-center justify-center gap-2 shadow-md transition"
+              >
+                <WhatsAppIcon size={16} />
+                <span>{lang === "ar" ? "محادثة فورية عبر واتساب" : "Chat on WhatsApp"}</span>
+              </a>
+            </div>
+
+            {/* Navigation Links */}
+            <nav className="flex-1 overflow-y-auto p-4 space-y-1 text-sm font-bold text-slate-700 dark:text-slate-200">
+              <a
+                href="#listings"
+                onClick={() => setShowMobileNav(false)}
+                className="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition"
+              >
+                <Building2 size={18} className="text-[#2563EB]" />
+                <span>{t.navProperties}</span>
+                <span className="ms-auto text-xs bg-[#2563EB]/10 text-[#2563EB] px-2 py-0.5 rounded-full">
+                  {filteredProperties.length}
+                </span>
+              </a>
+              <a
+                href="#buildings"
+                onClick={() => setShowMobileNav(false)}
+                className="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition"
+              >
+                <Building size={18} className="text-[#2563EB]" />
+                <span>{t.navBuildings}</span>
+                <span className="ms-auto text-xs bg-slate-100 dark:bg-white/10 px-2 py-0.5 rounded-full">
+                  {Object.keys(data.buildings || {}).length}
+                </span>
+              </a>
+              <a
+                href="#why"
+                onClick={() => setShowMobileNav(false)}
+                className="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition"
+              >
+                <ShieldCheck size={18} className="text-[#2563EB]" />
+                <span>{t.navWhyUs}</span>
+              </a>
+              <a
+                href="#faq"
+                onClick={() => setShowMobileNav(false)}
+                className="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition"
+              >
+                <HelpCircle size={18} className="text-[#2563EB]" />
+                <span>{t.navFaq}</span>
+              </a>
+              <a
+                href="#contact"
+                onClick={() => setShowMobileNav(false)}
+                className="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition"
+              >
+                <Phone size={18} className="text-[#2563EB]" />
+                <span>{t.navContact}</span>
+              </a>
+
+              <div className="pt-3 mt-3 border-t border-slate-200 dark:border-white/10 space-y-1">
+                <button
+                  onClick={() => {
+                    setShowFavorites(true);
+                    setShowMobileNav(false);
+                  }}
+                  className="w-full flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition text-start"
+                >
+                  <Heart size={18} className="text-[#DC2626]" />
+                  <span>{lang === "ar" ? "قائمة الشقق المفضلة" : "Favorite Apartments"}</span>
+                  {favorites.length > 0 && (
+                    <span className="ms-auto text-xs bg-[#DC2626] text-white px-2 py-0.5 rounded-full font-bold">
+                      {favorites.length}
+                    </span>
+                  )}
+                </button>
+                <Link
+                  href="/admin"
+                  onClick={() => setShowMobileNav(false)}
+                  className="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition text-slate-500 dark:text-slate-400"
+                >
+                  <Lock size={18} />
+                  <span>{t.navAdmin}</span>
+                </Link>
+              </div>
+            </nav>
+
+            {/* Bottom Controls */}
+            <div className="p-4 border-t border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 flex items-center justify-between">
+              <button
+                onClick={toggleLanguage}
+                className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-white/10 text-xs font-bold"
+              >
+                <Globe size={15} className="text-[#2563EB]" />
+                <span>{t.langSwitch}</span>
+              </button>
+
+              <button
+                onClick={toggleDarkMode}
+                className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-white/10 text-xs font-bold"
+              >
+                {isDark ? <Sun size={15} className="text-amber-400" /> : <Moon size={15} className="text-slate-600" />}
+                <span>{isDark ? (lang === "ar" ? "الوضع الفاتح" : "Light") : (lang === "ar" ? "الوضع الليلي" : "Dark")}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* 3. Hero Section — exact navy gradient, skyline SVG, geometric grid, and red/blue glow */}
       <section id="top" className="relative overflow-hidden bg-gradient-to-br from-[#0B1220] via-[#10204a] to-[#1e3a8a] text-white">
@@ -540,9 +708,9 @@ export default function HomeClient({ initialData }: HomeClientProps) {
           />
         </svg>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24 md:pt-24 md:pb-32">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16 sm:pt-16 sm:pb-24 md:pt-24 md:pb-32">
           <div className="max-w-3xl">
-            <span className="inline-flex items-center gap-2 py-1.5 px-3 rounded-full bg-white/10 border border-white/15 text-xs font-bold backdrop-blur">
+            <span className="inline-flex items-center gap-2 py-1.5 px-3 rounded-full bg-white/10 border border-white/15 text-[11px] sm:text-xs font-bold backdrop-blur">
               <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
               <span>
                 {availableCount}{" "}
@@ -550,14 +718,14 @@ export default function HomeClient({ initialData }: HomeClientProps) {
               </span>
             </span>
 
-            <h1 className="mt-5 text-4xl md:text-6xl font-black leading-[1.15]">
+            <h1 className="mt-4 sm:mt-5 text-3xl sm:text-5xl md:text-6xl font-black leading-[1.18]">
               {lang === "en" ? (data.hero.titleLine1En || "Your Next Home in") : data.hero.titleLine1}{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-l from-red-400 to-blue-300">
                 {lang === "en" ? (data.hero.titleHighlightEn || "Al-Sheed Buildings") : data.hero.titleHighlight}
               </span>
             </h1>
 
-            <p className="mt-5 text-slate-300 md:text-lg max-w-2xl leading-relaxed">
+            <p className="mt-3 sm:mt-5 text-slate-300 text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed">
               {lang === "en"
                 ? (data.hero.subtitleEn || "Premium residential apartments for direct rent from owner in Al-Arasat, Abu Nuwas, and Al-Saddah Street — zero broker fees and clear contracts.")
                 : data.hero.subtitle}
@@ -565,17 +733,17 @@ export default function HomeClient({ initialData }: HomeClientProps) {
           </div>
 
           {/* Quick search form — exact 4-column layout */}
-          <div className="mt-10 bg-white dark:bg-slate-900 text-slate-900 dark:text-white rounded-2xl p-2 shadow-2xl max-w-4xl grid grid-cols-1 sm:grid-cols-[1fr_1fr_1fr_auto] gap-2">
-            <label className="flex items-center gap-3 px-4 py-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 cursor-pointer">
-              <MapPin className="text-[#2563EB] text-lg shrink-0" size={20} />
-              <span className="flex-1">
+          <div className="mt-8 sm:mt-10 bg-white dark:bg-slate-900 text-slate-900 dark:text-white rounded-2xl p-2 sm:p-2.5 shadow-2xl max-w-4xl grid grid-cols-1 sm:grid-cols-[1fr_1fr_1fr_auto] gap-2 border border-slate-100 dark:border-white/10">
+            <label className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 cursor-pointer">
+              <MapPin className="text-[#2563EB] text-lg shrink-0" size={19} />
+              <span className="flex-1 min-w-0">
                 <span className="block text-[11px] text-slate-500 font-semibold">{t.locationLabel}</span>
                 <select
                   value={selectedLocation}
                   onChange={(e) => setSelectedLocation(e.target.value)}
-                  className="w-full bg-transparent font-bold text-sm outline-none cursor-pointer"
+                  className="w-full bg-transparent font-bold text-sm outline-none cursor-pointer text-slate-900 dark:text-white"
                 >
-                  <option value="">{t.allLocations}</option>
+                  <option value="" className="text-slate-900">{t.allLocations}</option>
                   {locations.map((loc) => (
                     <option key={loc} value={loc} className="text-slate-900">
                       {lang === "en" ? autoTranslateLocation(loc) : loc}
@@ -585,16 +753,16 @@ export default function HomeClient({ initialData }: HomeClientProps) {
               </span>
             </label>
 
-            <label className="flex items-center gap-3 px-4 py-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 sm:border-r border-slate-100 dark:border-white/10 cursor-pointer">
-              <BedDouble className="text-[#2563EB] text-lg shrink-0" size={20} />
-              <span className="flex-1">
+            <label className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 sm:border-r sm:border-l-0 border-slate-100 dark:border-white/10 cursor-pointer">
+              <BedDouble className="text-[#2563EB] text-lg shrink-0" size={19} />
+              <span className="flex-1 min-w-0">
                 <span className="block text-[11px] text-slate-500 font-semibold">{t.beds}</span>
                 <select
                   value={selectedBeds[0] || ""}
                   onChange={(e) => setSelectedBeds(e.target.value ? [parseInt(e.target.value)] : [])}
-                  className="w-full bg-transparent font-bold text-sm outline-none cursor-pointer"
+                  className="w-full bg-transparent font-bold text-sm outline-none cursor-pointer text-slate-900 dark:text-white"
                 >
-                  <option value="">{t.allBeds}</option>
+                  <option value="" className="text-slate-900">{t.allBeds}</option>
                   <option value="2" className="text-slate-900">2 {t.beds}</option>
                   <option value="3" className="text-slate-900">3 {t.beds}</option>
                   <option value="4" className="text-slate-900">4 {t.beds}</option>
@@ -602,16 +770,16 @@ export default function HomeClient({ initialData }: HomeClientProps) {
               </span>
             </label>
 
-            <label className="flex items-center gap-3 px-4 py-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 sm:border-r border-slate-100 dark:border-white/10 cursor-pointer">
-              <Armchair className="text-[#2563EB] text-lg shrink-0" size={20} />
-              <span className="flex-1">
+            <label className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 sm:border-r sm:border-l-0 border-slate-100 dark:border-white/10 cursor-pointer">
+              <Armchair className="text-[#2563EB] text-lg shrink-0" size={19} />
+              <span className="flex-1 min-w-0">
                 <span className="block text-[11px] text-slate-500 font-semibold">{t.furnishing}</span>
                 <select
                   value={selectedFurnishing[0] || ""}
                   onChange={(e) => setSelectedFurnishing(e.target.value ? [e.target.value] : [])}
-                  className="w-full bg-transparent font-bold text-sm outline-none cursor-pointer"
+                  className="w-full bg-transparent font-bold text-sm outline-none cursor-pointer text-slate-900 dark:text-white"
                 >
-                  <option value="">{t.allFurnishing}</option>
+                  <option value="" className="text-slate-900">{t.allFurnishing}</option>
                   <option value="مؤثث بالكامل" className="text-slate-900">{lang === "ar" ? "مؤثث بالكامل" : "Fully Furnished"}</option>
                   <option value="كاونتر مطبخ فقط" className="text-slate-900">{lang === "ar" ? "كاونتر مطبخ فقط" : "Kitchen Counter Only"}</option>
                   <option value="فارغ" className="text-slate-900">{lang === "ar" ? "فارغ" : "Unfurnished"}</option>
@@ -624,7 +792,7 @@ export default function HomeClient({ initialData }: HomeClientProps) {
                 const el = document.getElementById("listings");
                 if (el) el.scrollIntoView({ behavior: "smooth" });
               }}
-              className="bg-[#2563EB] hover:bg-[#1d4ed8] text-white rounded-xl px-7 py-4 font-bold flex items-center justify-center gap-2 shadow-lg shadow-[#2563EB]/30 transition-all cursor-pointer"
+              className="bg-[#2563EB] hover:bg-[#1d4ed8] text-white rounded-xl px-7 py-3.5 sm:py-4 font-bold flex items-center justify-center gap-2 shadow-lg shadow-[#2563EB]/30 transition-all cursor-pointer w-full sm:w-auto"
             >
               <Search size={18} />
               <span>{lang === "ar" ? "ابحث" : "Search"}</span>
@@ -632,18 +800,18 @@ export default function HomeClient({ initialData }: HomeClientProps) {
           </div>
 
           {/* 3 Counters */}
-          <div className="mt-10 grid grid-cols-3 gap-4 max-w-xl">
-            <div>
-              <div className="text-3xl font-black">{filteredProperties.length}</div>
-              <div className="text-xs text-slate-400 mt-1">{lang === "ar" ? "شقة معروضة" : "Apartments Listed"}</div>
+          <div className="mt-8 sm:mt-10 grid grid-cols-3 gap-2 sm:gap-4 max-w-xl">
+            <div className="bg-white/5 sm:bg-transparent p-2.5 sm:p-0 rounded-2xl text-center sm:text-start">
+              <div className="text-2xl sm:text-3xl font-black">{filteredProperties.length}</div>
+              <div className="text-[11px] sm:text-xs text-slate-400 mt-1 line-clamp-1">{lang === "ar" ? "شقة معروضة" : "Apartments Listed"}</div>
             </div>
-            <div>
-              <div className="text-3xl font-black">{Object.keys(data.buildings || {}).length}</div>
-              <div className="text-xs text-slate-400 mt-1">{lang === "ar" ? "بنايات سكنية" : "Residential Towers"}</div>
+            <div className="bg-white/5 sm:bg-transparent p-2.5 sm:p-0 rounded-2xl text-center sm:text-start">
+              <div className="text-2xl sm:text-3xl font-black">{Object.keys(data.buildings || {}).length}</div>
+              <div className="text-[11px] sm:text-xs text-slate-400 mt-1 line-clamp-1">{lang === "ar" ? "بنايات سكنية" : "Residential Towers"}</div>
             </div>
-            <div>
-              <div className="text-3xl font-black text-amber-400">100%</div>
-              <div className="text-xs text-slate-400 mt-1">{t.directOwnerBadge}</div>
+            <div className="bg-white/5 sm:bg-transparent p-2.5 sm:p-0 rounded-2xl text-center sm:text-start">
+              <div className="text-2xl sm:text-3xl font-black text-amber-400">100%</div>
+              <div className="text-[11px] sm:text-xs text-slate-400 mt-1 line-clamp-1">{t.directOwnerBadge}</div>
             </div>
           </div>
         </div>
@@ -663,19 +831,19 @@ export default function HomeClient({ initialData }: HomeClientProps) {
             </div>
           </div>
 
-          {/* Location tabs row */}
-          <div className="flex gap-2 overflow-x-auto pb-2 mb-6">
+          {/* Location tabs row — mobile swipe strip */}
+          <div className="flex gap-2 overflow-x-auto pb-2 mb-6 -mx-3 px-3 sm:mx-0 sm:px-0 no-scrollbar scroll-smooth">
             <button
               onClick={() => setSelectedLocation("")}
-              className={`shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold border transition ${
+              className={`shrink-0 flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold border transition ${
                 !selectedLocation
-                  ? "bg-[#0B1220] text-white border-[#0B1220] dark:bg-white dark:text-[#0B1220] dark:border-white"
+                  ? "bg-[#0B1220] text-white border-[#0B1220] dark:bg-white dark:text-[#0B1220] dark:border-white shadow-xs"
                   : "bg-white dark:bg-slate-900 border-slate-200 dark:border-white/10 hover:border-[#2563EB] text-slate-700 dark:text-slate-300"
               }`}
             >
-              <Layers size={16} />
+              <Layers size={15} />
               <span>{t.allLocations}</span>
-              <span className={`text-[11px] px-2 py-0.5 rounded-full ${!selectedLocation ? "bg-white/20 dark:bg-black/10" : "bg-slate-100 dark:bg-white/10"}`}>
+              <span className={`text-[10px] sm:text-[11px] px-2 py-0.5 rounded-full ${!selectedLocation ? "bg-white/20 dark:bg-black/10" : "bg-slate-100 dark:bg-white/10"}`}>
                 {(data.properties || []).length}
               </span>
             </button>
@@ -686,15 +854,15 @@ export default function HomeClient({ initialData }: HomeClientProps) {
                 <button
                   key={loc}
                   onClick={() => setSelectedLocation(on ? "" : loc)}
-                  className={`shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold border transition ${
+                  className={`shrink-0 flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold border transition ${
                     on
-                      ? "bg-[#0B1220] text-white border-[#0B1220] dark:bg-white dark:text-[#0B1220] dark:border-white"
+                      ? "bg-[#0B1220] text-white border-[#0B1220] dark:bg-white dark:text-[#0B1220] dark:border-white shadow-xs"
                       : "bg-white dark:bg-slate-900 border-slate-200 dark:border-white/10 hover:border-[#2563EB] text-slate-700 dark:text-slate-300"
                   }`}
                 >
-                  <MapPin size={16} />
+                  <MapPin size={15} />
                   <span>{lang === "en" ? autoTranslateLocation(loc) : loc}</span>
-                  <span className={`text-[11px] px-2 py-0.5 rounded-full ${on ? "bg-white/20 dark:bg-black/10" : "bg-slate-100 dark:bg-white/10"}`}>
+                  <span className={`text-[10px] sm:text-[11px] px-2 py-0.5 rounded-full ${on ? "bg-white/20 dark:bg-black/10" : "bg-slate-100 dark:bg-white/10"}`}>
                     {count}
                   </span>
                 </button>
@@ -930,37 +1098,37 @@ export default function HomeClient({ initialData }: HomeClientProps) {
             {/* Main Listings Column */}
             <div>
               {/* Header bar: count + mobile filter button + sort + grid/list toggle */}
-              <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-                <div className="flex items-center gap-3">
+              <div className="flex items-center justify-between gap-2 sm:gap-3 mb-4">
+                <div className="flex items-center gap-2 sm:gap-3">
                   <button
                     onClick={() => setShowMobileFilters(true)}
-                    className="lg:hidden flex items-center gap-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 rounded-xl px-4 py-2.5 text-sm font-bold text-slate-800 dark:text-slate-200"
+                    className="lg:hidden flex items-center gap-1.5 sm:gap-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 rounded-xl px-3 py-2 text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-200 shadow-2xs"
                   >
-                    <SlidersHorizontal size={16} />
+                    <SlidersHorizontal size={15} />
                     <span>{lang === "ar" ? "الفلاتر" : "Filters"}</span>
                     {activeChipsCount > 0 && (
-                      <span className="bg-[#2563EB] text-white text-[10px] rounded-full w-5 h-5 flex items-center justify-center font-bold">
+                      <span className="bg-[#2563EB] text-white text-[10px] rounded-full w-4.5 h-4.5 flex items-center justify-center font-bold">
                         {activeChipsCount}
                       </span>
                     )}
                   </button>
 
-                  <p className="text-sm text-slate-600 dark:text-slate-300">
-                    <strong className="text-slate-900 dark:text-white text-base">{filteredProperties.length}</strong>{" "}
-                    {lang === "ar" ? "شقة مطابقة" : "Matching Apartments"}
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+                    <strong className="text-slate-900 dark:text-white text-sm sm:text-base">{filteredProperties.length}</strong>{" "}
+                    {lang === "ar" ? "شقة" : "Units"}
                   </p>
                 </div>
 
                 <div className="flex items-center gap-2">
                   {/* Sort selector */}
                   <div className="relative">
-                    <ArrowUpDown size={14} className="absolute end-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+                    <ArrowUpDown size={13} className="absolute end-2.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
                     <select
                       value={sortBy}
                       onChange={(e) => setSortBy(e.target.value)}
-                      className="appearance-none bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 rounded-xl ps-4 pe-8 py-2.5 text-xs font-semibold outline-none cursor-pointer text-slate-800 dark:text-slate-200"
+                      className="appearance-none bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 rounded-xl ps-3 pe-7 py-2 text-[11px] sm:text-xs font-semibold outline-none cursor-pointer text-slate-800 dark:text-slate-200"
                     >
-                      <option value="featured">{lang === "ar" ? "الأبرز أولاً" : "Featured First"}</option>
+                      <option value="featured">{lang === "ar" ? "الأبرز" : "Featured"}</option>
                       <option value="area-desc">{lang === "ar" ? "المساحة: الأكبر" : "Area: High to Low"}</option>
                       <option value="area-asc">{lang === "ar" ? "المساحة: الأصغر" : "Area: Low to High"}</option>
                       <option value="beds-desc">{lang === "ar" ? "الغرف: الأكثر" : "Bedrooms: Most"}</option>
@@ -1217,14 +1385,14 @@ export default function HomeClient({ initialData }: HomeClientProps) {
                         </div>
 
                         {/* Action buttons matching alsheed.com */}
-                        <div className="mt-auto pt-5 space-y-2">
+                        <div className="mt-auto pt-4 sm:pt-5 space-y-2">
                           <div className="flex gap-2">
                             <button
                               onClick={() => {
                                 setSelectedProperty(prop);
                                 setActiveImageIdx(0);
                               }}
-                              className="flex-1 bg-[#0B1220] dark:bg-white dark:text-[#0B1220] hover:bg-[#2563EB] dark:hover:bg-[#2563EB] dark:hover:text-white text-white font-bold py-3 rounded-xl text-sm transition text-center cursor-pointer"
+                              className="flex-1 bg-[#0B1220] dark:bg-white dark:text-[#0B1220] hover:bg-[#2563EB] dark:hover:bg-[#2563EB] dark:hover:text-white text-white font-bold py-2.5 sm:py-3 px-2 rounded-xl text-xs sm:text-sm transition text-center cursor-pointer truncate"
                             >
                               {lang === "ar" ? "التفاصيل والمعاينة" : "Details & Viewing"}
                             </button>
@@ -1233,10 +1401,10 @@ export default function HomeClient({ initialData }: HomeClientProps) {
                               onClick={() => trackEvent("whatsapp", { id: prop.id, title: prop.title, building: prop.building }, "card_whatsapp")}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="w-12 rounded-xl bg-green-500 hover:bg-green-600 text-white flex items-center justify-center transition shrink-0"
+                              className="w-11 sm:w-12 rounded-xl bg-green-500 hover:bg-green-600 text-white flex items-center justify-center transition shrink-0"
                               aria-label="WhatsApp"
                             >
-                              <WhatsAppIcon size={20} />
+                              <WhatsAppIcon size={19} />
                             </a>
                           </div>
 
@@ -1260,16 +1428,16 @@ export default function HomeClient({ initialData }: HomeClientProps) {
       </section>
 
       {/* 5. Buildings Section — exact alsheed.com layout */}
-      <section id="buildings" className="py-14 md:py-20 bg-white dark:bg-slate-900/50 border-y border-slate-200 dark:border-white/5 scroll-mt-20">
+      <section id="buildings" className="py-12 md:py-20 bg-white dark:bg-slate-900/50 border-y border-slate-200 dark:border-white/5 scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white">
             {lang === "ar" ? "بناياتنا السكنية" : "Our Residential Buildings"}
           </h2>
-          <p className="text-sm text-slate-500 dark:text-slate-400 mt-2 mb-8">
+          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1.5 sm:mt-2 mb-6 sm:mb-8">
             {lang === "ar" ? "اضغط على أي بناية لعرض شققها المتاحة." : "Click any building to view its available apartments."}
           </p>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
             {Object.entries(data.buildings || {}).map(([bName, bLoc]) => {
               const bProps = (data.properties || []).filter((p) => p.building === bName);
               const bAvail = bProps.filter((p) => p.available).length;
@@ -1284,21 +1452,21 @@ export default function HomeClient({ initialData }: HomeClientProps) {
                     const el = document.getElementById("listings");
                     if (el) el.scrollIntoView({ behavior: "smooth" });
                   }}
-                  className="bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-[#2563EB] hover:shadow-lift p-5 rounded-2xl transition cursor-pointer flex flex-col justify-between"
+                  className="bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-[#2563EB] hover:shadow-lift p-3.5 sm:p-5 rounded-2xl transition cursor-pointer flex flex-col justify-between"
                 >
                   <div>
-                    <div className="w-10 h-10 rounded-xl bg-[#2563EB]/10 text-[#2563EB] flex items-center justify-center text-xl mb-3">
-                      <Building2 size={20} />
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-[#2563EB]/10 text-[#2563EB] flex items-center justify-center text-lg sm:text-xl mb-2 sm:mb-3">
+                      <Building2 size={18} />
                     </div>
-                    <h3 className="font-black text-base text-slate-900 dark:text-white">{nameDisplay}</h3>
-                    <p className="text-xs text-slate-500 mt-1 flex items-center gap-1">
-                      <MapPin size={12} />
+                    <h3 className="font-black text-sm sm:text-base text-slate-900 dark:text-white line-clamp-1">{nameDisplay}</h3>
+                    <p className="text-[11px] sm:text-xs text-slate-500 mt-1 flex items-center gap-1 line-clamp-1">
+                      <MapPin size={11} className="shrink-0" />
                       <span>{locDisplay}</span>
                     </p>
                   </div>
-                  <div className="mt-4 pt-3 border-t border-slate-200/60 dark:border-white/5 text-xs text-slate-600 dark:text-slate-400 flex items-center justify-between">
-                    <span>{lang === "ar" ? "المتاح الآن:" : "Available:"}</span>
-                    <strong className="text-[#2563EB] text-sm">{bAvail}</strong>
+                  <div className="mt-3 sm:mt-4 pt-2.5 sm:pt-3 border-t border-slate-200/60 dark:border-white/5 text-[11px] sm:text-xs text-slate-600 dark:text-slate-400 flex items-center justify-between">
+                    <span>{lang === "ar" ? "المتاح:" : "Available:"}</span>
+                    <strong className="text-[#2563EB] text-xs sm:text-sm">{bAvail}</strong>
                   </div>
                 </div>
               );
@@ -1507,16 +1675,16 @@ export default function HomeClient({ initialData }: HomeClientProps) {
         </div>
       </footer>
 
-      {/* 10. Floating Buttons — exact alsheed.com bottom-left buttons */}
-      <div className="fixed bottom-5 start-5 z-30 flex flex-col gap-3">
+      {/* 10. Floating Buttons — responsive sizing on mobile */}
+      <div className="fixed bottom-4 sm:bottom-6 start-4 sm:start-6 z-30 flex flex-col gap-2 sm:gap-3">
         {showScrollTop && (
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="w-12 h-12 rounded-full bg-[#0B1220] border border-white/10 text-white shadow-xl flex items-center justify-center hover:bg-slate-800 transition"
+            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#0B1220] border border-white/10 text-white shadow-xl flex items-center justify-center hover:bg-slate-800 transition"
             title={lang === "en" ? "Scroll to top" : "إلى الأعلى"}
             aria-label={lang === "en" ? "Scroll to top" : "إلى الأعلى"}
           >
-            <ArrowUp size={18} />
+            <ArrowUp size={16} />
           </button>
         )}
         <a
@@ -1524,60 +1692,63 @@ export default function HomeClient({ initialData }: HomeClientProps) {
           onClick={() => trackEvent("whatsapp", undefined, "floating_whatsapp")}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-14 h-14 rounded-full bg-green-500 text-white flex items-center justify-center shadow-xl hover:scale-110 transition"
+          className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-green-500 text-white flex items-center justify-center shadow-xl hover:scale-105 active:scale-95 transition"
           aria-label={lang === "en" ? "WhatsApp" : "واتساب"}
         >
-          <WhatsAppIcon size={28} />
+          <WhatsAppIcon size={24} />
         </a>
         <a
           href={`tel:${data.settings.phone}`}
           onClick={() => trackEvent("call", undefined, "floating_call")}
-          className="w-14 h-14 rounded-full bg-[#2563EB] text-white flex items-center justify-center shadow-xl hover:scale-110 transition"
+          className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#2563EB] text-white flex items-center justify-center shadow-xl hover:scale-105 active:scale-95 transition"
           aria-label={lang === "en" ? "Phone Call" : "اتصال"}
         >
-          <Phone size={24} />
+          <Phone size={20} />
         </a>
       </div>
 
-      {/* 11. Property Details Modal */}
+      {/* 11. Property Details Modal — sleek mobile bottom sheet */}
       {selectedProperty && (
         <div
-          className="fixed inset-0 z-60 bg-slate-950/75 backdrop-blur-xs flex items-end sm:items-center justify-center sm:p-4"
+          className="fixed inset-0 z-60 bg-slate-950/80 backdrop-blur-xs flex items-end sm:items-center justify-center sm:p-4"
           onClick={() => setSelectedProperty(null)}
         >
           <div
-            className="bg-white dark:bg-slate-900 w-full max-w-5xl rounded-t-3xl sm:rounded-3xl overflow-hidden shadow-2xl max-h-[94vh] flex flex-col"
+            className="bg-white dark:bg-slate-900 w-full max-w-5xl rounded-t-[28px] sm:rounded-3xl overflow-hidden shadow-2xl max-h-[92vh] sm:max-h-[90vh] flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
+            {/* Mobile Sheet Drag Handle Pill */}
+            <div className="w-12 h-1 bg-slate-300 dark:bg-slate-700 rounded-full mx-auto mt-2.5 sm:hidden"></div>
+
             {/* Header */}
-            <div className="p-5 border-b border-slate-100 dark:border-white/10 flex items-center justify-between">
-              <div>
-                <h3 className="font-black text-lg text-slate-900 dark:text-white">
+            <div className="px-4 py-3 sm:p-5 border-b border-slate-100 dark:border-white/10 flex items-center justify-between gap-2">
+              <div className="min-w-0 flex-1">
+                <h3 className="font-black text-base sm:text-lg text-slate-900 dark:text-white truncate">
                   {getLocalizedProperty(selectedProperty, lang).title}
                 </h3>
-                <span className="text-xs text-[#2563EB] font-bold">
+                <span className="text-xs text-[#2563EB] font-bold block truncate">
                   {getLocalizedProperty(selectedProperty, lang).building} · {getLocalizedProperty(selectedProperty, lang).location}
                 </span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5 shrink-0">
                 <button
                   onClick={() => handleShare(selectedProperty)}
                   className="p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 text-slate-500 transition"
                   title="مشاركة"
                 >
-                  <Share2 size={18} />
+                  <Share2 size={17} />
                 </button>
                 <button
                   onClick={() => setSelectedProperty(null)}
                   className="p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 text-slate-500 transition"
                 >
-                  <X size={20} />
+                  <X size={19} />
                 </button>
               </div>
             </div>
 
             {/* Modal Body */}
-            <div className="p-6 overflow-y-auto space-y-6">
+            <div className="p-4 sm:p-6 overflow-y-auto space-y-4 sm:space-y-6">
               {copySuccess && (
                 <div className="bg-green-500/10 border border-green-500 text-green-500 text-xs font-bold p-3 rounded-xl text-center">
                   {t.copied}
@@ -1585,7 +1756,7 @@ export default function HomeClient({ initialData }: HomeClientProps) {
               )}
 
               {/* Gallery */}
-              <div className="space-y-3">
+              <div className="space-y-2.5">
                 <div className="relative aspect-16/10 rounded-2xl overflow-hidden bg-slate-950">
                   <Image
                     src={selectedProperty.images[activeImageIdx] || selectedProperty.images[0] || ""}
@@ -1602,9 +1773,9 @@ export default function HomeClient({ initialData }: HomeClientProps) {
                             prev === 0 ? selectedProperty.images.length - 1 : prev - 1
                           )
                         }
-                        className="absolute start-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-slate-900/80 text-white flex items-center justify-center hover:bg-black transition"
+                        className="absolute start-2.5 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-slate-900/80 text-white flex items-center justify-center hover:bg-black transition"
                       >
-                        <ChevronLeft size={20} />
+                        <ChevronLeft size={18} />
                       </button>
                       <button
                         onClick={() =>
@@ -1612,21 +1783,25 @@ export default function HomeClient({ initialData }: HomeClientProps) {
                             prev === selectedProperty.images.length - 1 ? 0 : prev + 1
                           )
                         }
-                        className="absolute end-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-slate-900/80 text-white flex items-center justify-center hover:bg-black transition"
+                        className="absolute end-2.5 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-slate-900/80 text-white flex items-center justify-center hover:bg-black transition"
                       >
-                        <ChevronRight size={20} />
+                        <ChevronRight size={18} />
                       </button>
                     </>
                   )}
+                  {/* Photo counter */}
+                  <div className="absolute bottom-2.5 end-2.5 bg-black/60 backdrop-blur-xs text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                    {activeImageIdx + 1} / {selectedProperty.images.length}
+                  </div>
                 </div>
 
                 {selectedProperty.images.length > 1 && (
-                  <div className="flex gap-2 overflow-x-auto pb-2">
+                  <div className="flex gap-2 overflow-x-auto pb-1 no-scrollbar">
                     {selectedProperty.images.map((img, idx) => (
                       <button
                         key={idx}
                         onClick={() => setActiveImageIdx(idx)}
-                        className={`relative w-20 h-14 rounded-xl overflow-hidden shrink-0 border-2 transition ${
+                        className={`relative w-16 h-12 sm:w-20 sm:h-14 rounded-xl overflow-hidden shrink-0 border-2 transition ${
                           activeImageIdx === idx ? "border-[#2563EB] scale-105" : "border-transparent opacity-60"
                         }`}
                       >
@@ -1639,49 +1814,49 @@ export default function HomeClient({ initialData }: HomeClientProps) {
 
               {/* Specs Grid */}
               <div>
-                <h4 className="font-bold text-sm text-slate-900 dark:text-white mb-3">
+                <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white mb-2.5">
                   {t.propertyDetails}
                 </h4>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
-                  <div className="bg-slate-50 dark:bg-white/5 p-3 rounded-2xl">
-                    <span className="block text-slate-500">{t.area}</span>
-                    <span className="font-bold text-slate-900 dark:text-white mt-1 block">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 text-xs">
+                  <div className="bg-slate-50 dark:bg-white/5 p-2.5 sm:p-3 rounded-2xl">
+                    <span className="block text-slate-500 text-[11px]">{t.area}</span>
+                    <span className="font-bold text-slate-900 dark:text-white mt-0.5 block text-xs sm:text-sm">
                       {selectedProperty.area} {t.area}
                     </span>
                   </div>
-                  <div className="bg-slate-50 dark:bg-white/5 p-3 rounded-2xl">
-                    <span className="block text-slate-500">{t.beds}</span>
-                    <span className="font-bold text-slate-900 dark:text-white mt-1 block">
+                  <div className="bg-slate-50 dark:bg-white/5 p-2.5 sm:p-3 rounded-2xl">
+                    <span className="block text-slate-500 text-[11px]">{t.beds}</span>
+                    <span className="font-bold text-slate-900 dark:text-white mt-0.5 block text-xs sm:text-sm">
                       {selectedProperty.beds} {t.beds}
                     </span>
                   </div>
-                  <div className="bg-slate-50 dark:bg-white/5 p-3 rounded-2xl">
-                    <span className="block text-slate-500">{t.baths}</span>
-                    <span className="font-bold text-slate-900 dark:text-white mt-1 block">
+                  <div className="bg-slate-50 dark:bg-white/5 p-2.5 sm:p-3 rounded-2xl">
+                    <span className="block text-slate-500 text-[11px]">{t.baths}</span>
+                    <span className="font-bold text-slate-900 dark:text-white mt-0.5 block text-xs sm:text-sm">
                       {selectedProperty.baths} {t.baths}
                     </span>
                   </div>
-                  <div className="bg-slate-50 dark:bg-white/5 p-3 rounded-2xl">
-                    <span className="block text-slate-500">{t.furnishing}</span>
-                    <span className="font-bold text-slate-900 dark:text-white mt-1 block">
+                  <div className="bg-slate-50 dark:bg-white/5 p-2.5 sm:p-3 rounded-2xl">
+                    <span className="block text-slate-500 text-[11px]">{t.furnishing}</span>
+                    <span className="font-bold text-slate-900 dark:text-white mt-0.5 block text-xs sm:text-sm truncate">
                       {getLocalizedProperty(selectedProperty, lang).furnishing}
                     </span>
                   </div>
-                  <div className="bg-slate-50 dark:bg-white/5 p-3 rounded-2xl">
-                    <span className="block text-slate-500">{t.floor}</span>
-                    <span className="font-bold text-slate-900 dark:text-white mt-1 block">
+                  <div className="bg-slate-50 dark:bg-white/5 p-2.5 sm:p-3 rounded-2xl">
+                    <span className="block text-slate-500 text-[11px]">{t.floor}</span>
+                    <span className="font-bold text-slate-900 dark:text-white mt-0.5 block text-xs sm:text-sm truncate">
                       {getLocalizedProperty(selectedProperty, lang).floor}
                     </span>
                   </div>
-                  <div className="bg-slate-50 dark:bg-white/5 p-3 rounded-2xl">
-                    <span className="block text-slate-500">{t.view}</span>
-                    <span className="font-bold text-slate-900 dark:text-white mt-1 block">
+                  <div className="bg-slate-50 dark:bg-white/5 p-2.5 sm:p-3 rounded-2xl">
+                    <span className="block text-slate-500 text-[11px]">{t.view}</span>
+                    <span className="font-bold text-slate-900 dark:text-white mt-0.5 block text-xs sm:text-sm truncate">
                       {getLocalizedProperty(selectedProperty, lang).view}
                     </span>
                   </div>
-                  <div className="bg-slate-50 dark:bg-white/5 p-3 rounded-2xl sm:col-span-2">
-                    <span className="block text-slate-500">{t.directOwnerBadge}</span>
-                    <span className="font-bold text-green-600 dark:text-green-400 mt-1 block">
+                  <div className="bg-slate-50 dark:bg-white/5 p-2.5 sm:p-3 rounded-2xl col-span-2">
+                    <span className="block text-slate-500 text-[11px]">{t.directOwnerBadge}</span>
+                    <span className="font-bold text-green-600 dark:text-green-400 mt-0.5 block text-xs sm:text-sm truncate">
                       {t.directOwnerDesc}
                     </span>
                   </div>
@@ -1690,16 +1865,16 @@ export default function HomeClient({ initialData }: HomeClientProps) {
 
               {/* Amenities */}
               <div>
-                <h4 className="font-bold text-sm text-slate-900 dark:text-white mb-3">
+                <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white mb-2.5">
                   {t.featuresList}
                 </h4>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {getLocalizedProperty(selectedProperty, lang).features.map((feat, idx) => (
                     <span
                       key={idx}
-                      className="bg-[#2563EB]/10 text-[#2563EB] dark:text-blue-300 border border-[#2563EB]/20 px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5"
+                      className="bg-[#2563EB]/10 text-[#2563EB] dark:text-blue-300 border border-[#2563EB]/20 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl text-[11px] sm:text-xs font-semibold flex items-center gap-1.5"
                     >
-                      <Check size={14} />
+                      <Check size={13} />
                       <span>{feat}</span>
                     </span>
                   ))}
@@ -1707,17 +1882,17 @@ export default function HomeClient({ initialData }: HomeClientProps) {
               </div>
             </div>
 
-            {/* Modal Footer */}
-            <div className="p-4 border-t border-slate-100 dark:border-white/10 bg-slate-50 dark:bg-slate-950 flex flex-wrap items-center justify-between gap-3">
-              <div>
-                <span className="text-[11px] text-[#DC2626] font-bold block">
+            {/* Modal Footer — responsive 2-column on mobile */}
+            <div className="p-3.5 sm:p-4 border-t border-slate-100 dark:border-white/10 bg-slate-50 dark:bg-slate-950 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+              <div className="flex items-center justify-between sm:block">
+                <span className="text-[11px] sm:text-xs text-[#DC2626] font-bold block">
                   {lang === "ar" ? "السعر عند الاتصال" : "Price on Contact"} · <span dir="ltr">{data.settings.phoneDisplay}</span>
                 </span>
-                <span className="text-xs text-slate-500">
+                <span className="text-[11px] sm:text-xs text-slate-500">
                   {getLocalizedProperty(selectedProperty, lang).price || t.priceOnRequest}
                 </span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="grid grid-cols-2 sm:flex sm:items-center gap-2">
                 <a
                   href={`tel:${data.settings.phone}`}
                   onClick={() =>
@@ -1727,7 +1902,7 @@ export default function HomeClient({ initialData }: HomeClientProps) {
                       "modal_call"
                     )
                   }
-                  className="bg-slate-800 hover:bg-slate-700 text-white font-bold px-4 py-2.5 rounded-xl text-xs transition inline-flex items-center gap-1.5"
+                  className="bg-slate-800 hover:bg-slate-700 text-white font-bold py-3 sm:py-2.5 px-4 rounded-xl text-xs sm:text-sm transition flex items-center justify-center gap-1.5"
                 >
                   <Phone size={15} />
                   <span>{t.callNow}</span>
@@ -1746,7 +1921,7 @@ export default function HomeClient({ initialData }: HomeClientProps) {
                   }
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-green-500 hover:bg-green-600 text-white font-bold px-5 py-2.5 rounded-xl text-xs shadow-lg transition inline-flex items-center gap-2"
+                  className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 sm:py-2.5 px-4 sm:px-5 rounded-xl text-xs sm:text-sm shadow-md transition flex items-center justify-center gap-1.5 sm:gap-2"
                 >
                   <WhatsAppIcon size={16} />
                   <span>{t.whatsappInquiry}</span>
