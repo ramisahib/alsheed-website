@@ -18,26 +18,24 @@ pnpm run dev
 
 ## 🛠️ البناء والنشر على Cloudflare
 
-### 1. بناء المشروع محلياً والتأكد من عدم وجود أخطاء:
+### إعدادات البناء في لوحة Cloudflare (Workers & Pages Builds):
+- **Framework Preset**: `Next.js` أو `None`
+- **Build command**: `pnpm run build` (أو `npm run build` أو `pnpm run deploy`)
+- **Deploy command** (في حال Workers Builds): `pnpm run deploy`
+- **Root directory**: `/`
+
+### الأوامر عبر الطرفية (CLI):
+1. **بناء حزمة Cloudflare Worker كاملة:**
 ```bash
 pnpm run build
 ```
+يقوم هذا الأمر بترجمة Next.js تلقائياً وإنشاء حزمة Cloudflare الكاملة في `.open-next/worker.js` وملفات الأصول الثابتة في `.open-next/assets`.
 
-### 2. بناء حزمة Cloudflare Worker:
-```bash
-pnpm run build:worker
-```
-يقوم هذا الأمر بإنشاء الكود المترجم الجاهز للسيرفر في `.open-next/worker.js` وملفات الأصول الثابتة في `.open-next/assets`.
-
-### 3. معاينة السيرفر كما سيعمل على Cloudflare:
-```bash
-pnpm run preview
-```
-
-### 4. النشر المباشر إلى Cloudflare Workers:
+2. **النشر المباشر إلى Cloudflare:**
 ```bash
 pnpm run deploy
 ```
+*(يقوم هذا الأمر بتشغيل البناء أولاً تلقائياً والتأكد من تجهيز حزمة OpenNext ثم نشرها إلى السحابة).*
 
 ---
 
